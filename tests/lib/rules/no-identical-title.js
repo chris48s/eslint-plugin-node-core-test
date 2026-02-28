@@ -120,6 +120,18 @@ it('title', function() {});`,
     `function handler() { describe('nested', function() {}); }
 describe('suite', handler);
 describe('nested', function() {});`,
+
+    // Binary string concat with a variable — not statically foldable, not compared
+    `it('a' + n, function() {});
+it('a' + n, function() {});`,
+
+    // Binary string concat that folds to a different value from the other title
+    `it('prefix' + 'one', function() {});
+it('prefix' + 'two', function() {});`,
+
+    // Binary concat on one side, literal on the other — different results
+    `it('ab', function() {});
+it('a' + 'c', function() {});`,
   ],
 
   invalid: [
@@ -283,6 +295,41 @@ function handler() {
   describe('nested', function() {});
 }`,
       errors: [{ messageId: "duplicateSuiteTitle", line: 4 }],
+    },
+
+    // Binary string concatenation folded to same value as a literal — test titles
+    {
+      code: `it('ab', function() {});
+it('a' + 'b', function() {});`,
+      errors: [{ messageId: "duplicateTestTitle", line: 2 }],
+    },
+
+    // Binary string concatenation: both sides are concat — same folded value
+    {
+      code: `it('a' + 'b', function() {});
+it('a' + 'b', function() {});`,
+      errors: [{ messageId: "duplicateTestTitle", line: 2 }],
+    },
+
+    // Literal matched against folded concat (reversed order)
+    {
+      code: `it('a' + 'b', function() {});
+it('ab', function() {});`,
+      errors: [{ messageId: "duplicateTestTitle", line: 2 }],
+    },
+
+    // Binary string concat for duplicate suite titles
+    {
+      code: `describe('prefix' + 'suffix', function() {});
+describe('prefixsuffix', function() {});`,
+      errors: [{ messageId: "duplicateSuiteTitle", line: 2 }],
+    },
+
+    // Deeply nested binary concat: 'a' + 'b' + 'c' === 'abc'
+    {
+      code: `it('a' + 'b' + 'c', function() {});
+it('abc', function() {});`,
+      errors: [{ messageId: "duplicateTestTitle", line: 2 }],
     },
   ],
 });
