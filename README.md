@@ -66,8 +66,11 @@ TODO: Run eslint-doc-generator to generate the configs list (or delete this sect
 
 <!-- begin auto-generated rules list -->
 
-| Name |
-| :--- |
+🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
+
+| Name                                                                                 | Description                               | 🔧 |
+| :----------------------------------------------------------------------------------- | :---------------------------------------- | :- |
+| [consistent-spacing-between-blocks](docs/rules/consistent-spacing-between-blocks.md) | Require consistent spacing between blocks | 🔧 |
 
 <!-- end auto-generated rules list -->
 
