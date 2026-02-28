@@ -43,6 +43,10 @@ ruleTester.run("no-empty-title", rule, {
     "suite.only('some text', function() {})",
     "suite.skip('some text', function() {})",
 
+    // Deeper chains with non-empty titles — should be allowed
+    "describe.skip.only('some text', function() {})",
+    "it.skip.only('some text', function() {})",
+
     // Dynamic identifiers — cannot be statically analysed, so allowed
     "var dynamicTitle = 'foo'; it(dynamicTitle, function() {})",
     "it(dynamicTitle, function() {})",
@@ -159,6 +163,16 @@ ruleTester.run("no-empty-title", rule, {
     },
     {
       code: "suite.only('', function() {})",
+      errors: [error],
+    },
+
+    // Deeper chains with empty titles — should also be flagged
+    {
+      code: "describe.skip.only('', function() {})",
+      errors: [error],
+    },
+    {
+      code: "it.skip.only('', function() {})",
       errors: [error],
     },
   ],

@@ -95,6 +95,10 @@ notTest('title', function() {});`,
     // describe.only — different titles
     `describe.only('describe1', function() {});
 describe.only('describe2', function() {});`,
+
+    // Deeper chains — different titles, should be valid
+    `describe.skip.only('describe1', function() {});
+describe.skip.only('describe2', function() {});`,
   ],
 
   invalid: [
@@ -222,6 +226,22 @@ describe('describe1', function() {});`,
     {
       code: "it('my title', () => {});\nit(`my title`, () => {});",
       errors: [{ messageId: "duplicateTestTitle", line: 2 }],
+    },
+
+    // Deeper chains — duplicate suite titles via deeper MemberExpression chain
+    {
+      code: `describe.skip.only('title', function() {});
+describe.skip.only('title', function() {});`,
+      errors: [{ messageId: "duplicateSuiteTitle", line: 2 }],
+    },
+
+    // Deeper chains — duplicate test titles via deeper MemberExpression chain
+    {
+      code: `describe('outer', function() {
+  it.skip.only('title', function() {});
+  it.skip.only('title', function() {});
+});`,
+      errors: [{ messageId: "duplicateTestTitle", line: 3 }],
     },
   ],
 });

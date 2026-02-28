@@ -98,6 +98,23 @@ describe('suite2', function() {
 
     // Non-hook member expression — not flagged (e.g. t.before())
     "before(function() {}); foo.before(function() {});",
+
+    // Deeper MemberExpression chains — describe.skip.only is still a suite
+    // Hooks in separate describe.skip.only suites should not conflict
+    `describe.skip.only('suite1', function() {
+  before(function() {});
+});
+describe.skip.only('suite2', function() {
+  before(function() {});
+});`,
+
+    // Hooks in outer suite and inside a describe.skip.only nested suite — different scopes
+    `describe('outer', function() {
+  before(function() {});
+  describe.skip.only('inner', function() {
+    before(function() {});
+  });
+});`,
   ],
 
   invalid: [

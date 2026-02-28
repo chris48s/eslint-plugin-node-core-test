@@ -132,6 +132,26 @@ afterEach(() => {});`,
 
     after(() => {});
 });`,
+
+    // describe.only / it.skip / test.todo variants with proper blank lines
+    `describe.only('first suite', () => {});
+
+describe.only('second suite', () => {});`,
+
+    `describe('outer', () => {
+    it.skip('first', () => {});
+
+    it.skip('second', () => {});
+});`,
+
+    `describe.only('outer', () => {
+    it.only('first', () => {});
+
+    it.only('second', () => {});
+});`,
+
+    // Single describe.only at top level — no blank line needed
+    `describe.only('only suite', () => {});`,
   ],
 
   invalid: [
@@ -267,6 +287,58 @@ afterEach(() => {});`,
     before(() => {});
 
     after(() => {});
+});`,
+      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+    },
+
+    // describe.only calls at top level without blank line
+    {
+      code: `describe.only('first suite', () => {});
+describe.only('second suite', () => {});`,
+      output: `describe.only('first suite', () => {});
+
+describe.only('second suite', () => {});`,
+      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+    },
+
+    // it.skip calls inside describe without blank line
+    {
+      code: `describe('outer', () => {
+    it.skip('first', () => {});
+    it.skip('second', () => {});
+});`,
+      output: `describe('outer', () => {
+    it.skip('first', () => {});
+
+    it.skip('second', () => {});
+});`,
+      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+    },
+
+    // Mixed: regular it followed by it.only without blank line
+    {
+      code: `describe('outer', () => {
+    it('first', () => {});
+    it.only('second', () => {});
+});`,
+      output: `describe('outer', () => {
+    it('first', () => {});
+
+    it.only('second', () => {});
+});`,
+      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+    },
+
+    // Nested: missing blank line inside describe.only
+    {
+      code: `describe.only('Outer', () => {
+    it('first', () => {});
+    it('second', () => {});
+});`,
+      output: `describe.only('Outer', () => {
+    it('first', () => {});
+
+    it('second', () => {});
 });`,
       errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
     },
