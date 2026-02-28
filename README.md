@@ -72,6 +72,7 @@ TODO: Run eslint-doc-generator to generate the configs list (or delete this sect
 | :----------------------------------------------------------------------------------- | :---------------------------------------- | :- |
 | [consistent-spacing-between-blocks](docs/rules/consistent-spacing-between-blocks.md) | Require consistent spacing between blocks | 🔧 |
 | [no-empty-title](docs/rules/no-empty-title.md)                                       | Disallow empty test descriptions          |    |
+| [no-identical-title](docs/rules/no-identical-title.md)                               | Disallow identical titles                 |    |
 
 <!-- end auto-generated rules list -->
 
