@@ -1,5 +1,7 @@
 # Disallow empty test descriptions (`nodetest/no-empty-title`)
 
+💼 This rule is enabled in the ✅ `recommended` config.
+
 <!-- end auto-generated rule header -->
 
 This rule requires you to specify the suite/test descriptions for each test.
