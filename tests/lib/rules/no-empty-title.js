@@ -2,15 +2,14 @@
  * @file Disallow empty test descriptions
  * @author chris48s
  */
-"use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/no-empty-title"),
-  RuleTester = require("eslint").RuleTester;
-const { describe, it } = require("node:test");
+import rule from "../../../lib/rules/no-empty-title.js";
+import { RuleTester } from "eslint";
+import { describe, it } from "node:test";
 
 RuleTester.describe = describe;
 RuleTester.it = it;

@@ -2,15 +2,14 @@
  * @file Require consistent spacing between blocks
  * @author chris48s
  */
-"use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/consistent-spacing-between-blocks"),
-  RuleTester = require("eslint").RuleTester;
-const { describe, it } = require("node:test");
+import rule from "../../../lib/rules/consistent-spacing-between-blocks.js";
+import { RuleTester } from "eslint";
+import { describe, it } from "node:test";
 
 RuleTester.describe = describe;
 RuleTester.it = it;

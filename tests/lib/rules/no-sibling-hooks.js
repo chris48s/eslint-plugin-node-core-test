@@ -2,15 +2,14 @@
  * @file Disallow duplicate uses of a hook at the same level inside a suite
  * @author chris48s
  */
-"use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/no-sibling-hooks"),
-  RuleTester = require("eslint").RuleTester;
-const { describe, it } = require("node:test");
+import rule from "../../../lib/rules/no-sibling-hooks.js";
+import { RuleTester } from "eslint";
+import { describe, it } from "node:test";
 
 RuleTester.describe = describe;
 RuleTester.it = it;

@@ -8,6 +8,7 @@
     "eslint-plugin"
   ],
   "author": "chris48s",
+  "type": "module",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
   "files": [
@@ -21,9 +22,6 @@
     "prettier:check": "prettier --check .",
     "test": "node --experimental-test-coverage --test-coverage-include='lib/**/*.js' --test-coverage-exclude='tests/**/*.js' --test tests/**/*.js",
     "update:eslint-docs": "eslint-doc-generator"
-  },
-  "dependencies": {
-    "requireindex": "^1.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
