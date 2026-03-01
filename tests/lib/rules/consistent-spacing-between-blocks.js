@@ -198,6 +198,25 @@ describe('suite', handler);`,
 function handler() {
     it('foo', () => {});
 }`,
+
+    // Trailing inline // comment on same line as previous block, blank line after
+    `describe('My Test', () => {
+    it('does something', () => {}); // trailing comment
+
+    afterEach(() => {});
+});`,
+
+    // Trailing inline /* */ comment on same line as previous block, blank line after
+    `describe('My Test', () => {
+    it('does something', () => {}); /* trailing block comment */
+
+    afterEach(() => {});
+});`,
+
+    // Trailing inline // comment at top level with blank line after
+    `describe('first suite', () => {}); // trailing comment
+
+describe('second suite', () => {});`,
   ],
 
   invalid: [
@@ -458,6 +477,44 @@ describe('suite', handler);`,
     // comment
     afterEach(() => {});
 });`,
+      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+    },
+
+    // Trailing inline // comment — no blank line anywhere; fix must insert AFTER the comment
+    {
+      code: `describe('My Test', () => {
+    it('does something', () => {}); // trailing comment
+    afterEach(() => {});
+});`,
+      output: `describe('My Test', () => {
+    it('does something', () => {}); // trailing comment
+
+    afterEach(() => {});
+});`,
+      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+    },
+
+    // Trailing inline /* */ block comment — no blank line; fix must insert AFTER the comment
+    {
+      code: `describe('My Test', () => {
+    it('does something', () => {}); /* trailing block comment */
+    afterEach(() => {});
+});`,
+      output: `describe('My Test', () => {
+    it('does something', () => {}); /* trailing block comment */
+
+    afterEach(() => {});
+});`,
+      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+    },
+
+    // Trailing // comment at top level — fix must insert AFTER the comment
+    {
+      code: `describe('first suite', () => {}); // trailing comment
+describe('second suite', () => {});`,
+      output: `describe('first suite', () => {}); // trailing comment
+
+describe('second suite', () => {});`,
       errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
     },
 
