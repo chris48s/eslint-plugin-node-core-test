@@ -19,7 +19,7 @@
     "lint:js": "eslint .",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "test": "mocha tests --recursive",
+    "test": "node --experimental-test-coverage --test-coverage-include='lib/**/*.js' --test-coverage-exclude='tests/**/*.js' --test tests/**/*.js",
     "update:eslint-docs": "eslint-doc-generator"
   },
   "dependencies": {
@@ -34,7 +34,6 @@
     "eslint-plugin-jsdoc": "^62.7.1",
     "eslint-plugin-n": "^17.0.0",
     "eslint-plugin-prettier": "^5.5.5",
-    "mocha": "^11.0.0",
     "npm-run-all2": "^6.1.2",
     "prettier": "^3.8.1",
     "prettier-plugin-jsdoc": "^1.8.0"

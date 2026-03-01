@@ -10,6 +10,10 @@
 
 const rule = require("../../../lib/rules/consistent-spacing-between-blocks"),
   RuleTester = require("eslint").RuleTester;
+const { describe, it } = require("node:test");
+
+RuleTester.describe = describe;
+RuleTester.it = it;
 
 //------------------------------------------------------------------------------
 // Tests
