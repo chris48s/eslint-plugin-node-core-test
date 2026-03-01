@@ -1,4 +1,4 @@
-# nodetest/no-sibling-hooks
+# node-core-test/no-sibling-hooks
 
 📝 Disallow duplicate uses of a hook at the same level inside a suite.
 

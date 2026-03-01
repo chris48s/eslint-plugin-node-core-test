@@ -1,4 +1,4 @@
-# eslint-plugin-nodetest
+# eslint-plugin-node-core-test
 
 ESLint rules for `node:test`
 
@@ -10,30 +10,30 @@ You'll first need to install [ESLint](https://eslint.org/):
 npm i eslint --save-dev
 ```
 
-Next, install `eslint-plugin-nodetest`:
+Next, install `eslint-plugin-node-core-test`:
 
 ```sh
-npm install eslint-plugin-nodetest --save-dev
+npm install eslint-plugin-node-core-test --save-dev
 ```
 
 ## Usage
 
 ```js
-import nodetest from "eslint-plugin-nodetest";
+import nodeCoreTestPlugin from "eslint-plugin-node-core-test";
 
 export default [
     // This plugin exports a recommended config
-    nodetest.configs.recommended,
+    nodeCoreTestPlugin.configs.recommended,
 
     {
-        // Add nodetest to the plugins declaration
+        // Add node-core-test to the plugins declaration
         plugins: {
-            nodetest
+            "node-core-test": nodeCoreTestPlugin
         },
 
         // Optionally customise or configure rules
         rules: {
-            "nodetest/no-sibling-hooks": "warn"
+            "node-core-test/no-sibling-hooks": "warn"
         }
     }
 ];

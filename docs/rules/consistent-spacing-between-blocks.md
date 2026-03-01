@@ -1,4 +1,4 @@
-# nodetest/consistent-spacing-between-blocks
+# node-core-test/consistent-spacing-between-blocks
 
 📝 Require consistent spacing between blocks.
 

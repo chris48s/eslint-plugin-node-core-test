@@ -1,4 +1,4 @@
-# nodetest/no-empty-title
+# node-core-test/no-empty-title
 
 📝 Disallow empty test descriptions.
 

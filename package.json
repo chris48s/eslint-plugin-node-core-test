@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-nodetest",
+  "name": "eslint-plugin-node-core-test",
   "version": "0.1.0",
   "description": "ESLint rules for node:test",
   "keywords": [

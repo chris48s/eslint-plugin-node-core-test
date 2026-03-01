@@ -1,4 +1,4 @@
-# nodetest/no-identical-title
+# node-core-test/no-identical-title
 
 📝 Disallow identical titles.
 
