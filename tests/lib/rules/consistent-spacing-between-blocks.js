@@ -234,7 +234,7 @@ describe('second suite', () => {});`,
 
     afterEach(() => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Missing blank line between beforeEach() and it() inside describe
@@ -248,7 +248,7 @@ describe('second suite', () => {});`,
 
     it('does something', () => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Same pattern with suite/test syntax
@@ -262,7 +262,7 @@ describe('second suite', () => {});`,
 
     test('does something', () => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Missing blank line after a variable declaration before a test call
@@ -276,7 +276,7 @@ describe('second suite', () => {});`,
 
     it('uses a variable', () => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Two test calls on the same line inside describe
@@ -292,7 +292,7 @@ describe('second suite', () => {});`,
         "\n\n" +
         "it('block two', () => {});" +
         "});",
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Chained call without blank line before next sibling
@@ -308,21 +308,21 @@ describe('second suite', () => {});`,
         "\n\n" +
         "it('block two', () => {});" +
         "});",
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Two top-level describe calls without blank line (same line)
     {
       code: 'describe("", () => {});describe("", () => {});',
       output: 'describe("", () => {});\n\ndescribe("", () => {});',
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Two top-level describe calls without blank line (only a newline, no blank line)
     {
       code: "describe();\ndescribe();",
       output: "describe();\n\ndescribe();",
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Missing blank line between multiple it() calls inside describe (two errors)
@@ -340,8 +340,8 @@ describe('second suite', () => {});`,
     it('third', () => {});
 });`,
       errors: [
-        { messageId: "missingLineBreak", type: "CallExpression" },
-        { messageId: "missingLineBreak", type: "CallExpression" },
+        { messageId: "missingLineBreak" },
+        { messageId: "missingLineBreak" },
       ],
     },
 
@@ -356,7 +356,7 @@ describe('second suite', () => {});`,
 
     after(() => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // describe.only calls at top level without blank line
@@ -366,7 +366,7 @@ describe.only('second suite', () => {});`,
       output: `describe.only('first suite', () => {});
 
 describe.only('second suite', () => {});`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // it.skip calls inside describe without blank line
@@ -380,7 +380,7 @@ describe.only('second suite', () => {});`,
 
     it.skip('second', () => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Mixed: regular it followed by it.only without blank line
@@ -394,7 +394,7 @@ describe.only('second suite', () => {});`,
 
     it.only('second', () => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Nested: missing blank line inside describe.only
@@ -408,7 +408,7 @@ describe.only('second suite', () => {});`,
 
     it('second', () => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Nested: missing blank line inside inner describe
@@ -426,7 +426,7 @@ describe.only('second suite', () => {});`,
         it('second', () => {});
     });
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Function reference callback — missing blank line inside handler suite
@@ -445,7 +445,7 @@ function handler() {
 
     it('bar', () => {});
 }`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Arrow function reference — missing blank line inside handler suite
@@ -463,7 +463,7 @@ describe('suite', handler);`,
 };
 
 describe('suite', handler);`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Comment between two blocks with no blank line anywhere — should error
@@ -480,7 +480,7 @@ describe('suite', handler);`,
     // comment
     afterEach(() => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Trailing inline // comment — no blank line anywhere; fix must insert AFTER the comment
@@ -494,7 +494,7 @@ describe('suite', handler);`,
 
     afterEach(() => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Trailing inline /* */ block comment — no blank line; fix must insert AFTER the comment
@@ -508,7 +508,7 @@ describe('suite', handler);`,
 
     afterEach(() => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Trailing // comment at top level — fix must insert AFTER the comment
@@ -518,7 +518,7 @@ describe('second suite', () => {});`,
       output: `describe('first suite', () => {}); // trailing comment
 
 describe('second suite', () => {});`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Same pattern at top level
@@ -530,7 +530,7 @@ describe('second suite', () => {});`,
 
 // comment
 describe('second suite', () => {});`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
 
     // Multiple comments between two blocks with no blank line
@@ -548,7 +548,7 @@ describe('second suite', () => {});`,
     // comment two
     it('second', () => {});
 });`,
-      errors: [{ messageId: "missingLineBreak", type: "CallExpression" }],
+      errors: [{ messageId: "missingLineBreak" }],
     },
   ],
 });

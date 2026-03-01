@@ -7,7 +7,7 @@ import prettierPlugin from "eslint-plugin-prettier";
 
 const config = [
   js.configs.recommended,
-  eslintPlugin.configs["flat/recommended"],
+  eslintPlugin.configs.recommended,
   jsdocPlugin.configs["flat/recommended-error"],
   ...pluginNode.configs["flat/mixed-esm-and-cjs"],
   prettierConfig,

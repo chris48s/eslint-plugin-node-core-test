@@ -24,11 +24,11 @@
     "update:eslint-docs": "eslint-doc-generator"
   },
   "devDependencies": {
-    "@eslint/js": "^9.0.0",
-    "eslint": "^9.0.0",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-doc-generator": "^3.2.0",
-    "eslint-plugin-eslint-plugin": "^6.0.0",
+    "eslint-plugin-eslint-plugin": "^7.1.1",
     "eslint-plugin-jsdoc": "^62.7.1",
     "eslint-plugin-n": "^17.0.0",
     "eslint-plugin-prettier": "^5.5.5",
