@@ -65,6 +65,7 @@ export default [
 | :----------------------------------------------------------------------------------- | :----------------------------------------------------------------- | :- | :- | :- |
 | [consistent-spacing-between-blocks](docs/rules/consistent-spacing-between-blocks.md) | Require consistent spacing between blocks                          | ✅  |    | 🔧 |
 | [no-empty-title](docs/rules/no-empty-title.md)                                       | Disallow empty test descriptions                                   | ✅  |    |    |
+| [no-exclusive-tests](docs/rules/no-exclusive-tests.md)                               | Disallow exclusive tests                                           |    | ✅  |    |
 | [no-identical-title](docs/rules/no-identical-title.md)                               | Disallow identical titles                                          | ✅  |    |    |
 | [no-incomplete-tests](docs/rules/no-incomplete-tests.md)                             | Disallow incomplete/TODO tests                                     |    | ✅  |    |
 | [no-sibling-hooks](docs/rules/no-sibling-hooks.md)                                   | Disallow duplicate uses of a hook at the same level inside a suite | ✅  |    |    |
