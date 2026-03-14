@@ -64,6 +64,7 @@ export default [
 | Name                                                                                 | Description                                                        | 💼 | ⚠️ | 🔧 |
 | :----------------------------------------------------------------------------------- | :----------------------------------------------------------------- | :- | :- | :- |
 | [consistent-spacing-between-blocks](docs/rules/consistent-spacing-between-blocks.md) | Require consistent spacing between blocks                          | ✅  |    | 🔧 |
+| [no-empty-tests](docs/rules/no-empty-tests.md)                                       | Disallow empty tests                                               | ✅  |    |    |
 | [no-empty-title](docs/rules/no-empty-title.md)                                       | Disallow empty test descriptions                                   | ✅  |    |    |
 | [no-exclusive-tests](docs/rules/no-exclusive-tests.md)                               | Disallow exclusive tests                                           |    | ✅  |    |
 | [no-identical-title](docs/rules/no-identical-title.md)                               | Disallow identical titles                                          | ✅  |    |    |
