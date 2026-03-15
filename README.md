@@ -57,15 +57,20 @@ export default [
 <!-- begin auto-generated rules list -->
 
 💼 Configurations enabled in.\
+⚠️ Configurations set to warn in.\
 ✅ Set in the `recommended` configuration.\
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
 
-| Name                                                                                 | Description                                                        | 💼 | 🔧 |
-| :----------------------------------------------------------------------------------- | :----------------------------------------------------------------- | :- | :- |
-| [consistent-spacing-between-blocks](docs/rules/consistent-spacing-between-blocks.md) | Require consistent spacing between blocks                          | ✅  | 🔧 |
-| [no-empty-title](docs/rules/no-empty-title.md)                                       | Disallow empty test descriptions                                   | ✅  |    |
-| [no-identical-title](docs/rules/no-identical-title.md)                               | Disallow identical titles                                          | ✅  |    |
-| [no-sibling-hooks](docs/rules/no-sibling-hooks.md)                                   | Disallow duplicate uses of a hook at the same level inside a suite | ✅  |    |
+| Name                                                                                 | Description                                                        | 💼 | ⚠️ | 🔧 |
+| :----------------------------------------------------------------------------------- | :----------------------------------------------------------------- | :- | :- | :- |
+| [consistent-spacing-between-blocks](docs/rules/consistent-spacing-between-blocks.md) | Require consistent spacing between blocks                          | ✅  |    | 🔧 |
+| [no-empty-tests](docs/rules/no-empty-tests.md)                                       | Disallow empty tests                                               | ✅  |    |    |
+| [no-empty-title](docs/rules/no-empty-title.md)                                       | Disallow empty test descriptions                                   | ✅  |    |    |
+| [no-exclusive-tests](docs/rules/no-exclusive-tests.md)                               | Disallow exclusive tests                                           |    | ✅  |    |
+| [no-identical-title](docs/rules/no-identical-title.md)                               | Disallow identical titles                                          | ✅  |    |    |
+| [no-incomplete-tests](docs/rules/no-incomplete-tests.md)                             | Disallow incomplete/TODO tests                                     |    | ✅  |    |
+| [no-sibling-hooks](docs/rules/no-sibling-hooks.md)                                   | Disallow duplicate uses of a hook at the same level inside a suite | ✅  |    |    |
+| [no-skipped-tests](docs/rules/no-skipped-tests.md)                                   | Disallow skipped tests                                             |    | ✅  |    |
 
 <!-- end auto-generated rules list -->
 
