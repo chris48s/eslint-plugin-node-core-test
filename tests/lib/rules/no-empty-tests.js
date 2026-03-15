@@ -46,6 +46,25 @@ ruleTester.run("no-empty-tests", rule, {
     "test('foo', () => {})",
     "it('foo', () => {})",
 
+    // Identifier passed as callback — not empty
+    "test('foo', handler)",
+    "it('foo', handler)",
+    "describe('foo', handler)",
+    "suite('foo', handler)",
+
+    // Options object followed by identifier callback — not empty
+    "test('foo', {}, handler)",
+    "it('foo', {}, handler)",
+    "test('foo', { timeout: 1000 }, handler)",
+
+    // MemberExpression passed as callback — not empty
+    "test('foo', obj.method)",
+    "it('foo', obj.method)",
+
+    // .only / .skip variants with identifier callback — not empty
+    "test.only('foo', handler)",
+    "test.skip('foo', handler)",
+
     // Not a recognised test function — ignored
     "notTest('foo')",
     "notTest()",
