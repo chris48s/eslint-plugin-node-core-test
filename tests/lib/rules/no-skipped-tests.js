@@ -60,6 +60,10 @@ ruleTester.run("no-skipped-tests", rule, {
     // Dynamic skip value — cannot be statically analysed, so allowed
     "test('foo', { skip: skipIt }, function () {})",
     "test('foo', { skip: getSkip() }, function () {})",
+
+    // FunctionDeclaration callback by reference — handler NOT passed to a test/suite
+    "function handler(t) { t.skip(); }",
+    "function handler(t) { t.skip(); } notATestFunc('foo', handler);",
   ],
 
   invalid: [
@@ -150,6 +154,26 @@ ruleTester.run("no-skipped-tests", rule, {
     // t.skip() accessed via closure (inner function does not shadow the param)
     {
       code: "test('foo', function (t) { function f() { t.skip(); } f(); })",
+      errors: [error],
+    },
+
+    // t.skip() inside FunctionDeclaration callback passed by reference
+    {
+      code: "function handler(t) { t.skip(); } test('foo', handler);",
+      errors: [error],
+    },
+    {
+      code: "function handler(t) { t.skip(); } it('foo', handler);",
+      errors: [error],
+    },
+    {
+      code: "function handler(t) { t.skip(); } describe('foo', handler);",
+      errors: [error],
+    },
+
+    // Forward reference: test call before function declaration (hoisting)
+    {
+      code: "test('foo', handler); function handler(t) { t.skip(); }",
       errors: [error],
     },
   ],

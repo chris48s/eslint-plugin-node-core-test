@@ -60,6 +60,10 @@ ruleTester.run("no-incomplete-tests", rule, {
     // Dynamic todo value — cannot be statically analysed, so allowed
     "test('foo', { todo: isTodo }, function () {})",
     "test('foo', { todo: getTodo() }, function () {})",
+
+    // FunctionDeclaration callback by reference — handler NOT passed to a test/suite
+    "function handler(t) { t.todo(); }",
+    "function handler(t) { t.todo(); } notATestFunc('foo', handler);",
   ],
 
   invalid: [
@@ -150,6 +154,26 @@ ruleTester.run("no-incomplete-tests", rule, {
     // t.todo() accessed via closure (inner function does not shadow the param)
     {
       code: "test('foo', function (t) { function f() { t.todo(); } f(); })",
+      errors: [error],
+    },
+
+    // t.todo() inside FunctionDeclaration callback passed by reference
+    {
+      code: "function handler(t) { t.todo(); } test('foo', handler);",
+      errors: [error],
+    },
+    {
+      code: "function handler(t) { t.todo(); } it('foo', handler);",
+      errors: [error],
+    },
+    {
+      code: "function handler(t) { t.todo(); } describe('foo', handler);",
+      errors: [error],
+    },
+
+    // Forward reference: test call before function declaration (hoisting)
+    {
+      code: "test('foo', handler); function handler(t) { t.todo(); }",
       errors: [error],
     },
   ],
