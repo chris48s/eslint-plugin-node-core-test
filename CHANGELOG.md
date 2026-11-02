@@ -1,3 +1,9 @@
+## 📦 0.2.2
+
+- Fix (consistent-spacing-between-blocks):
+  allow no newline when test is first line in a loop
+- Tested on node 26
+
 ## 📦 0.2.1
 
 Build/packaging fixes
