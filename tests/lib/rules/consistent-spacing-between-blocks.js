@@ -220,9 +220,128 @@ function handler() {
     `describe('first suite', () => {}); // trailing comment
 
 describe('second suite', () => {});`,
+
+    // First statement in a loop body needs no blank line before it
+    `test('before', () => {});
+
+for (const tag of ['file', 'fileoverview', 'overview']) {
+    test(\`does as thing with @\${tag}\`, () => {});
+}`,
+
+    `describe('foo', () => {
+    it('before', () => {});
+
+    for (const tag of ['file', 'fileoverview', 'overview']) {
+        test(\`does as thing with @\${tag}\`, () => {});
+    }
+});`,
+
+    `test('before', () => {});
+
+for (let i = 0; i < 3; i++) {
+    test('foo', () => {});
+}`,
+
+    `describe('foo', () => {
+    it('before', () => {});
+
+    for (let i = 0; i < 3; i++) {
+        test('foo', () => {});
+    }
+});`,
+
+    `test('before', () => {});
+
+for (const key in obj) {
+    test(key, () => {});
+}`,
+
+    `describe('foo', () => {
+    it('before', () => {});
+
+    for (const key in obj) {
+        test(key, () => {});
+    }
+});`,
+
+    `test('before', () => {});
+
+while (cond()) {
+    test('foo', () => {});
+}`,
+
+    `describe('foo', () => {
+    it('before', () => {});
+
+    while (cond()) {
+        test('foo', () => {});
+    }
+});`,
+
+    `test('before', () => {});
+
+do {
+    test('foo', () => {});
+} while (cond());`,
+
+    `describe('foo', () => {
+    it('before', () => {});
+
+    do {
+        test('foo', () => {});
+    } while (cond());
+});`,
+
+    `test('before', () => {});
+
+for (const tag of tags) test(tag, () => {});`,
+
+    `describe('foo', () => {
+    it('before', () => {});
+
+    for (const tag of tags) test(tag, () => {});
+});`,
+
+    `test('before', () => {});
+
+while (cond()) test('foo', () => {});`,
+
+    `describe('foo', () => {
+    it('before', () => {});
+
+    while (cond()) test('foo', () => {});
+});`,
+
+    `test('before', () => {});
+
+do test('foo', () => {}); while (cond());`,
+
+    `describe('foo', () => {
+    it('before', () => {});
+
+    do test('foo', () => {}); while (cond());
+});`,
   ],
 
   invalid: [
+    // Second statement in a loop body still needs a blank line
+    {
+      code: `test('before', () => {});
+
+for (const tag of tags) {
+    test('foo', () => {});
+    test('bar', () => {});
+}`,
+      output: `test('before', () => {});
+
+for (const tag of tags) {
+    test('foo', () => {});
+
+    test('bar', () => {});
+}`,
+      errors: [{ messageId: "missingLineBreak" }],
+    },
+
     // Missing blank line between it() and afterEach() inside describe
     {
       code: `describe('My Test', function () {
